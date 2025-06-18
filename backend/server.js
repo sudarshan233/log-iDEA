@@ -1,9 +1,14 @@
 import express from 'express';
+import dotenv from 'dotenv';
 
 import ideas from './routes/IdeaRoutes.js'
+import {connectDB} from "./config/database.js";
 
+connectDB();
+dotenv.config();
 const app = express();
-const PORT = 5000;
+app.use(express.json());
+const PORT = process.env.PORT;
 
 app.use('/api/ideas', ideas);
 

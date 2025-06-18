@@ -7,7 +7,7 @@ import {
     createIdea,
     updateIdea,
     deleteIdea,
-} from "../controllers/IdeasFunctions.js";
+} from "../controllers/IdeasControllers.js";
 
 const router = express.Router();
 

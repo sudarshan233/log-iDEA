@@ -12,7 +12,10 @@
   "type": "module",
   "description": "The server for iDEA app which allows user to store their ideas and innovations easily. This prevents users from forgetting their ideas and can begin to innovate.",
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "mongoose": "^8.16.0",
     "nodemon": "^3.1.10"
   }
 }
