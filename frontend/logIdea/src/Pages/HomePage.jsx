@@ -1,4 +1,5 @@
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { Link } from "react-router";
+
 const HomePage = () => {
 
     return (
@@ -16,8 +17,13 @@ const HomePage = () => {
                     </section>
                 </section>
                 <section className="md:mt-20 flex gap-2.5">
-                    <button className="bg-button text-white text-2xl p-4 rounded-xl">View Ideas</button>
-                    <button className="bg-accent text-white text-2xl p-4 rounded-xl">Log Idea</button>
+                    <Link to="/idea">
+                        <button className="bg-button text-white text-2xl p-4 rounded-xl">View Ideas</button>
+                    </Link>
+
+                    <Link to="/create">
+                        <button className="bg-accent text-white text-2xl p-4 rounded-xl">Log Idea</button>
+                    </Link>
                 </section>
 
             </section>

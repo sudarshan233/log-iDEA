@@ -22,11 +22,41 @@ export const getIdeasById = (req, res) => {
 };
 
 export const getIdeasByAny = async (req, res) => {
-    const {id, title} = req.query;
+    const {id, title, by, category} = req.query;
     if(id)
     {
         try{
             const ideas = await Idea.findById(id);
+            res.status(200).send({
+                success: true,
+                ideas
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({
+                success: false,
+                message: "Error in fetching all ideas using Id"
+            });
+        }
+    }
+    else if (by) {
+        try{
+            const ideas = await Idea.find({by});
+            res.status(200).send({
+                success: true,
+                ideas
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({
+                success: false,
+                message: "Error in fetching all ideas using Id"
+            });
+        }
+    }
+    else if(category) {
+        try{
+            const ideas = await Idea.find({category});
             res.status(200).send({
                 success: true,
                 ideas
@@ -58,8 +88,8 @@ export const getIdeasByAny = async (req, res) => {
 
 export const createIdea = (req, res) => {
     try{
-        const { title, description} = req.body;
-        const newIdea = new Idea({title, description});
+        const { title, by, category, description } = req.body;
+        const newIdea = new Idea({title, by, category, description});
         newIdea.save();
         res.status(201).send({
             success: true,
@@ -75,9 +105,9 @@ export const createIdea = (req, res) => {
 };
 
 export const updateIdea = async (req, res) => {
-    const {title, description} = req.body;
+    const {title, by, category, description} = req.body;
     try {
-        const updatedIdea = await Idea.findByIdAndUpdate(req.params.id, {title, description});
+        const updatedIdea = await Idea.findByIdAndUpdate(req.params.id, {title, by, category, description});
         res.status(200).send({
             success: true,
             message: updatedIdea
