@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import ideas from './routes/IdeaRoutes.js'
 import {connectDB} from "./config/database.js";
@@ -9,6 +10,11 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 const PORT = process.env.PORT;
+app.use(cors(
+    {
+        origin: 'http://localhost:5173',
+    }
+));
 
 app.use('/api/ideas', ideas);
 

@@ -25,7 +25,7 @@ export default {
         'accent': '#FF7601'
       },
       width: {
-        'viewBar': '440px'
+        'viewBar': '530px'
       }
     },
   },

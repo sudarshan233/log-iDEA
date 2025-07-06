@@ -7,7 +7,7 @@ const AdditionalInfo = (props) => {
             <input
                 value={value}
                 onChange={(event) => onChange(event.target.value)}
-                className="bg-sec-background-color"
+                className="bg-sec-background-color outline-0"
                 placeholder={placeholder} type="text"/>
         </div>
     )

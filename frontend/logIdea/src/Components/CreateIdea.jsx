@@ -1,18 +1,28 @@
 import AdditionalInfo from "./AdditionalInfo.jsx";
 import Logged from "./Logged.jsx";
 import Logging from "./Logging.jsx";
+import Edit from "./Edit.jsx";
+import Editing from "./Editing.jsx";
 
 import Footer from "./Footer.jsx";
 import {useEffect, useState} from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const CreateIdea = () => {
+const CreateIdea = (props) => {
     const [title, setTitle] = useState("");
     const [by, setBy] = useState("");
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
+    const {
+        clickedId,
+        clickedTitle,
+        clickedBy,
+        clickedCategory,
+        clickedDescription,
+        isClicked,
+        functionClick} = props;
 
     const logIdea = async (event) => {
         event.preventDefault();
@@ -47,8 +57,44 @@ const CreateIdea = () => {
             setLoading(false);
         }
     }
+
+    useEffect(() => {
+        if(isClicked) {
+            setTitle(clickedTitle);
+            setBy(clickedBy);
+            setCategory(clickedCategory);
+            setDescription(clickedDescription);
+        }
+    }, [isClicked, clickedTitle, clickedBy, clickedCategory, clickedDescription]);
+
+    const editIdea = async (event) => {
+        event.preventDefault();
+
+        setLoading(true);
+        try {
+            await axios.put(`http://localhost:5001/api/ideas/${clickedId}`, {
+                title,
+                by,
+                category,
+                description
+            });
+            toast.success("Idea edited successfully");
+            setTitle("");
+            setBy("");
+            setCategory("");
+            setDescription("");
+        } catch (error) {
+            console.error(error);
+            toast.error("Error in editing idea");
+        }
+        finally {
+            functionClick(false);
+            setLoading(false);
+        }
+    }
+
     return (
-        <form onSubmit={logIdea} className="flex flex-col gap-5 p-6 w-screen bg-sec-background-color">
+        <form onSubmit={isClicked ? editIdea:logIdea} className="flex flex-col gap-5 p-6 w-screen bg-sec-background-color">
             <input
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
@@ -66,10 +112,12 @@ const CreateIdea = () => {
                 placeholder="Finally!! Tell me your idea. Go nuts🎉🎉"></textarea>
 
             <div className="flex justify-between">
-                <Footer style="mt-10"/>
+                <Footer style="mt-10 "/>
 
                 <button type="submit" className="w-max h-max mt-4 bg-accent text-white text-2xl p-2 rounded-xl">
-                    {!loading ? <Logged /> : <Logging />}
+                    {
+                        isClicked ? loading ? <Editing /> : <Edit edit={editIdea}/> : loading ? <Logging /> : <Logged />
+                    }
                 </button>
             </div>
         </form>

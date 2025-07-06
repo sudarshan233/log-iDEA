@@ -16,9 +16,21 @@ export const getAllIdeas = async (req, res) => {
     }
 };
 
-export const getIdeasById = (req, res) => {
-
-    res.status(200).send();
+export const getIdeasById = async (req, res) => {
+    const { id } = req.params;
+    try{
+        const idea = await Idea.findById(id);
+        res.status(200).send({
+            success: true,
+            idea
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            success: false,
+            message: "Error in fetching selected idea using Id"
+        });
+    }
 };
 
 export const getIdeasByAny = async (req, res) => {

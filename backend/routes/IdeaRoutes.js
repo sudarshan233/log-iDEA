@@ -15,7 +15,7 @@ router.get('/', getAllIdeas);
 
 router.get('/search', getIdeasByAny);
 
-// router.get('/api/ideas/:id', getIdeasById)
+router.get('/:id', getIdeasById)
 
 router.post('/', createIdea);
 
