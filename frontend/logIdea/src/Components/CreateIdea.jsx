@@ -3,95 +3,16 @@ import Logged from "./Logged.jsx";
 import Logging from "./Logging.jsx";
 import Edit from "./Edit.jsx";
 import Editing from "./Editing.jsx";
-
 import Footer from "./Footer.jsx";
-import {useEffect, useState} from "react";
-import toast from "react-hot-toast";
-import axios from "axios";
 
 const CreateIdea = (props) => {
-    const [title, setTitle] = useState("");
-    const [by, setBy] = useState("");
-    const [category, setCategory] = useState("");
-    const [description, setDescription] = useState("");
-    const [loading, setLoading] = useState(false);
     const {
-        clickedId,
-        clickedTitle,
-        clickedBy,
-        clickedCategory,
-        clickedDescription,
+        title, setTitle,
+        by, setBy,
+        category, setCategory,
+        description, setDescription,
         isClicked,
-        functionClick} = props;
-
-    const logIdea = async (event) => {
-        event.preventDefault();
-        console.log(title);
-        console.log(by);
-        console.log(category);
-        console.log(description);
-
-        if(!title || !by || !category || !description) {
-            toast.error("Please fill all the fields");
-            return;
-        }
-
-        setLoading(true);
-        try {
-            await axios.post("http://localhost:5001/api/ideas", {
-                title,
-                by,
-                category,
-                description
-            });
-            toast.success("Idea logged successfully");
-            setTitle("");
-            setBy("");
-            setCategory("");
-            setDescription("");
-        } catch (error) {
-            console.error(error);
-            toast.error("Error in logging idea");
-        }
-        finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        if(isClicked) {
-            setTitle(clickedTitle);
-            setBy(clickedBy);
-            setCategory(clickedCategory);
-            setDescription(clickedDescription);
-        }
-    }, [isClicked, clickedTitle, clickedBy, clickedCategory, clickedDescription]);
-
-    const editIdea = async (event) => {
-        event.preventDefault();
-
-        setLoading(true);
-        try {
-            await axios.put(`http://localhost:5001/api/ideas/${clickedId}`, {
-                title,
-                by,
-                category,
-                description
-            });
-            toast.success("Idea edited successfully");
-            setTitle("");
-            setBy("");
-            setCategory("");
-            setDescription("");
-        } catch (error) {
-            console.error(error);
-            toast.error("Error in editing idea");
-        }
-        finally {
-            functionClick(false);
-            setLoading(false);
-        }
-    }
+        logIdea, editIdea, loading } = props;
 
     return (
         <form onSubmit={isClicked ? editIdea:logIdea} className="flex flex-col gap-5 p-6 w-screen bg-sec-background-color">

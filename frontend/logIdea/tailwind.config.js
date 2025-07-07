@@ -15,6 +15,12 @@ export default {
         'background-color': '#151515',
         'sec-background-color': '#303030'
       },
+      textSize: {
+        "by": "8px",
+        "category": "8px",
+        "description": "8px",
+        "date": "6px"
+      },
       textColor: {
         "faded": "F2F2F2"
       },
@@ -29,5 +35,7 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+      require("tailwind-scrollbar")
+  ],
 }
