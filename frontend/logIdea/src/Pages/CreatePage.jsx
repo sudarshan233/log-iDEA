@@ -14,6 +14,7 @@ const CreatePage = () => {
     const [loading, setLoading] = useState(false);
 
     const [del, setDelete] = useState(false);
+    const [deleteIdeas, setDeleteIdeas] = useState([]);
 
     const [clickedId, setClickedId] = useState("");
     const [clickedTitle, setClickedTitle] = useState("");
@@ -22,7 +23,9 @@ const CreatePage = () => {
     const [clickedDescription, setClickedDescription] = useState("");
     const [clicked, setClicked] = useState(false);
 
-    const scrollStyle = "scrollbar-thin scrollbar-thumb-amber-600 scrollbar-track-gray-900";
+    const scrollStyle = "scrollbar-thin scrollbar-thumb-amber-600 scrollbar-track-gray-950";
+
+    console.log("Delete: " + deleteIdeas);
 
     const logIdea = async (event) => {
         event.preventDefault();
@@ -138,6 +141,7 @@ const CreatePage = () => {
                 functionClick={setClicked}
                 enableLog={enableLog}
                 setDelete={setDelete}
+                setDeleteIdeas={setDeleteIdeas}
                 del={del}
             />
             <CreateIdea
