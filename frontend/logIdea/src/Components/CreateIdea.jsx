@@ -33,7 +33,7 @@ const CreateIdea = (props) => {
                 placeholder="Finally!! Tell me your idea. Go nuts🎉🎉"></textarea>
 
             <div className="flex justify-between">
-                <Footer style="mt-10 "/>
+                <Footer style="mt-10"/>
 
                 <button type="submit" className="w-max h-max mt-4 bg-accent text-white text-2xl p-2 rounded-xl">
                     {
