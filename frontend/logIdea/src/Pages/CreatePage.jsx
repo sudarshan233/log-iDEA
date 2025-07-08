@@ -140,6 +140,7 @@ const CreatePage = () => {
                 editIdea={editIdea}
                 logIdea={logIdea}
                 loading={loading}
+                scrollStyle={scrollStyle}
             />
         </section>
     )

@@ -12,10 +12,10 @@ const CreateIdea = (props) => {
         category, setCategory,
         description, setDescription,
         isClicked,
-        logIdea, editIdea, loading } = props;
+        logIdea, editIdea, loading, scrollStyle } = props;
 
     return (
-        <form onSubmit={isClicked ? editIdea:logIdea} className="flex flex-col gap-5 p-6 w-screen bg-sec-background-color">
+        <form onSubmit={isClicked ? editIdea:logIdea} className={`flex flex-col gap-5 p-6 w-screen bg-sec-background-color overflow-auto ${scrollStyle}`}>
             <input
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
