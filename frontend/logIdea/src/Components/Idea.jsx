@@ -12,7 +12,7 @@ const Idea = (props) => {
             <hr />
             <span className="text-sm ">By: {by}</span>
             <span className="text-sm">Category: {category}</span>
-            <span className="text-sm">{description.slice(0,60)}...</span>
+            <span className="text-sm">{description.slice(0,40)}...</span>
             <span className="text-sm opacity-50">{createdAt === updatedAt ? `Created at ${formatDate(new Date(createdAt))}` : `Opened at ${formatDate(new Date(updatedAt))}`}</span>
         </div>
     )
