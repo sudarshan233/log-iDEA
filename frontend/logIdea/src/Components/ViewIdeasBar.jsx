@@ -10,7 +10,7 @@ const ViewIdeasBar = (props) => {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
 
-    const {width, sectionWidth, overflow, flexDirection, ideaClicked, wrap, enableLog, scrollStyle} = props;
+    const {width, sectionWidth, overflow, flexDirection, ideaClicked, wrap, enableLog, setDelete, del, scrollStyle} = props;
 
     useEffect(() => {
         const fetchIdeas = async () => {
@@ -52,24 +52,24 @@ const ViewIdeasBar = (props) => {
             <div className="flex w-full justify-between pr-6">
                 <h2>My Ideas</h2>
                 <div className="flex gap-2">
-                    <button className="hover:opacity-100 opacity-50 transition-opacity"><Trash2 className="stroke-accent mt-2 w-4 h-4 "/></button>
+                    <button onClick={setDelete(true)} className="hover:opacity-100 opacity-50 transition-opacity"><Trash2 className="stroke-accent mt-2 w-4 h-4 "/></button>
                     <button onClick={enableLog} className="hover:opacity-100 opacity-50 transition-opacity"><Plus className="stroke-accent mt-2 w-4 h-4 "/></button>
                 </div>
             </div>
-            <div className={`flex ${flexDirection} h-screen gap-4 pr-4 ${scrollStyle} ${overflow} ${wrap}`}>
+            <div className={`flex ${flexDirection} h-screen gap-4 pr-4 ${scrollStyle} ${overflow} ${wrap}`} multiple>
                 {loading ? <h1>Loading...</h1> : (ideas.length === 0 ? <div className="flex p-4 h-4/5 justify-center items-center border-dashed border-gray-500"><h1>No ideas logged yet!!!</h1></div> : ideas.map((idea) => {
-                        return <Idea
-                            key={idea._id}
-                            id={idea._id}
-                            title={idea.title}
-                            by={idea.by}
-                            category={idea.category}
-                            description={idea.description}
-                            createdAt={idea.createdAt}
-                            updatedAt={idea.updatedAt}
-                            handleClick={ideaClicked}/>
-
-                    }))
+                    return <Idea
+                        key={idea._id}
+                        id={idea._id}
+                        title={idea.title}
+                        by={idea.by}
+                        category={idea.category}
+                        description={idea.description}
+                        createdAt={idea.createdAt}
+                        updatedAt={idea.updatedAt}
+                        handleClick={ideaClicked}
+                    />
+                }))
                 }
             </div>
         </section>

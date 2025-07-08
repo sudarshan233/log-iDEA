@@ -1,5 +1,5 @@
 const Idea = (props) => {
-    const { id, title, by, category, description, createdAt, updatedAt, handleClick} = props;
+    const { id, title, by, category, description, createdAt, updatedAt, handleClick, del} = props;
 
     console.log(title);
     return (

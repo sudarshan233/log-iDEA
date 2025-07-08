@@ -13,6 +13,8 @@ const CreatePage = () => {
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const [del, setDelete] = useState(false);
+
     const [clickedId, setClickedId] = useState("");
     const [clickedTitle, setClickedTitle] = useState("");
     const [clickedBy, setClickedBy] = useState("");
@@ -118,6 +120,11 @@ const CreatePage = () => {
         }
     }
 
+
+    const deleteIdea = async (id) => {
+
+    }
+
     return (
         <section className="flex">
             <NavBar />
@@ -130,6 +137,8 @@ const CreatePage = () => {
                 ideaClicked={viewIdea}
                 functionClick={setClicked}
                 enableLog={enableLog}
+                setDelete={setDelete}
+                del={del}
             />
             <CreateIdea
                 title={title} setTitle={setTitle}
