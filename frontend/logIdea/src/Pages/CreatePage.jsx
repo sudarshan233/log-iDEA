@@ -123,10 +123,17 @@ const CreatePage = () => {
         }
     }
 
-
-    const deleteIdea = async (id) => {
-
-    }
+    const deleteIdea = async () => {
+        try {
+            await Promise.all(
+                deleteIdeas.map(id => axios.delete(`http://localhost:5001/api/ideas/${id}`))
+            );
+            toast.success("Idea(s) deleted successfully");
+        } catch (error) {
+            console.error(error);
+            toast.error("Error in deleting idea");
+        }
+    };
 
     return (
         <section className="flex">
@@ -143,6 +150,8 @@ const CreatePage = () => {
                 setDelete={setDelete}
                 setDeleteIdeas={setDeleteIdeas}
                 del={del}
+                deleteIdea={deleteIdea}
+                deleteIdeas={deleteIdeas}
             />
             <CreateIdea
                 title={title} setTitle={setTitle}

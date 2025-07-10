@@ -8,7 +8,7 @@ const Idea = (props) => {
     return (
         <div onClick={() => {
             handleClick(id)
-        }} className="flex min-w-72 w-80 gap-2 bg-sec-background-color p-4 rounded-xl relative">
+        }} className="flex min-w-72 h-max w-80 gap-2 bg-sec-background-color p-4 rounded-xl relative">
             {del ? <button onClick={() => {
                 if(selectColor === "bg-sec-background-color") {
                     setSelectColor("bg-accent");
@@ -30,7 +30,7 @@ const Idea = (props) => {
                 <span className="text-sm ">By: {by.slice(0, 25)}...</span>
                 <span className="text-sm">Category: {category}</span>
                 <span className="text-sm">{description.slice(0,40)}...</span>
-                <span className="text-sm opacity-50">{createdAt === updatedAt ? `Created at ${formatDate(new Date(createdAt))}` : `Opened at ${formatDate(new Date(updatedAt))}`}</span>
+                <span className="text-sm opacity-25">{createdAt === updatedAt ? `Created at ${formatDate(new Date(createdAt))}` : `Opened at ${formatDate(new Date(updatedAt))}`}</span>
             </div>
         </div>
     )

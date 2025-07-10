@@ -15,7 +15,7 @@ const ViewIdeasBar = (props) => {
         ideaClicked, wrap,
         enableLog, setDelete,
         del, setDeleteIdeas,
-        scrollStyle} = props;
+        deleteIdea, deleteIdeas, scrollStyle} = props;
 
     useEffect(() => {
         const fetchIdeas = async () => {
@@ -32,7 +32,7 @@ const ViewIdeasBar = (props) => {
         }
 
         fetchIdeas();
-    }, [ideas]);
+    }, []);
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -50,24 +50,31 @@ const ViewIdeasBar = (props) => {
 
     return (
         <section className={`${sectionWidth} h-screen ml-20 flex flex-col pl-6, pr-6, pt-6 gap-5`}>
-            <div className={`h-8 ${width} mr-6 box-border self-center bg-sec-background-color rounded-xl relative`}>
+            <div className={`h-8 ${width} mr-12 box-border self-center bg-sec-background-color rounded-xl relative`}>
                 <input onChange={handleChange} value={search} className={`bg-sec-background-color outline-0 ${width} h-8 p-4 rounded-xl`} placeholder="Search by title"/>
                 <Search className="stroke-accent w-4 h-4 absolute right-3 top-2"/>
             </div>
             <div className="flex w-full justify-between pr-6">
                 <h2>My Ideas</h2>
-                <div className="flex gap-2">
+                <div className="flex mr-6 gap-2">
+                    <button onClick={enableLog} className="hover:opacity-100 opacity-50 transition-opacity"><Plus className="stroke-accent w-5 h-5 "/></button>
                     {del ?
                         <div className="flex gap-2">
-                            <button className="w-max h-max bg-accent text-white text-sm pr-2 pl-2 pt-1 pb-1 rounded">Delete</button>
+                            <button onClick={() => {
+                                deleteIdea();
+                                setIdeas((prevState) => {
+                                    return prevState.filter((idea) => !deleteIdeas.includes(idea._id));
+                                })
+                                setDelete(false);
+                                setDeleteIdeas([]);
+                            }} className="w-max h-max bg-accent text-white text-sm pr-2 pl-2 pt-1 pb-1 rounded">Delete</button>
                             <button onClick={() => {
                                 setDelete(false);
                             }} className="w-max h-max bg-sec-background-color text-white text-sm pr-2 pl-2 pt-1 pb-1 rounded">Cancel</button>
                         </div>
                         : <button onClick={() => {
-                        setDelete(true);
-                    }} className="hover:opacity-100 opacity-50 transition-opacity"><Trash2 className="stroke-accent w-4 h-4"/></button>}
-                    <button onClick={enableLog} className="hover:opacity-100 opacity-50 transition-opacity"><Plus className="stroke-accent w-4 h-4 "/></button>
+                            setDelete(true);
+                        }} className="hover:opacity-100 opacity-50 transition-opacity"><Trash2 className="stroke-accent w-4 h-4"/></button>}
                 </div>
             </div>
             <div className={`flex ${flexDirection} h-screen gap-4 pr-4 ${scrollStyle} ${overflow} ${wrap} box-border mb-2`}>
