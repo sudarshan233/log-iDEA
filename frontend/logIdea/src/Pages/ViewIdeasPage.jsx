@@ -6,7 +6,14 @@ const ViewIdeasPage = () => {
     return (
         <section className="flex">
             <NavBar />
-            <ViewIdeasBar width="w-96" sectionWidth="w-screen" overflow="overflow-auto" scrollStyle={scrollStyle} flexDirection = "flex-row" wrap="flex-wrap" bottomMargin="mb-10"/>
+            <ViewIdeasBar
+                width="w-96"
+                sectionWidth="w-screen"
+                overflow="overflow-auto"
+                scrollStyle={scrollStyle}
+                flexDirection = "flex-row"
+                wrap="flex-wrap"
+                bottomMargin="mb-10"/>
         </section>
     )
 }
