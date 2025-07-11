@@ -1,6 +1,6 @@
 import {Plus, Search, Trash2} from 'lucide-react';
 import {useEffect, useState} from "react";
-import axios from "axios";
+import api from "../lib/axios.js";
 
 import Idea from "./Idea.jsx";
 
@@ -15,24 +15,33 @@ const ViewIdeasBar = (props) => {
         ideaClicked, wrap,
         enableLog, setDelete,
         del, setDeleteIdeas,
-        deleteIdea, deleteIdeas, scrollStyle} = props;
+        deleteIdea, deleteIdeas,
+        refreshIdeas, scrollStyle} = props;
 
     useEffect(() => {
+        console.log("Fetching ideas...");
         const fetchIdeas = async () => {
             try {
-                const res = await axios.get("http://localhost:5001/api/ideas");
+                const res = await api.get("/ideas");
                 console.log(res.data.ideas);
                 setIdeas(res.data.ideas);
                 setAllIdeas(res.data.ideas);
             } catch (error) {
-                console.error(error);
+                console.error("❌ Error fetching ideas:", error.message);
+                if (error.response) {
+                    console.error("💡 Server responded with:", error.response.data);
+                } else if (error.request) {
+                    console.error("📡 No response from server. Request was:", error.request);
+                } else {
+                    console.error("💥 Unknown error:", error);
+                }
             } finally {
                 setLoading(false);
             }
         }
 
         fetchIdeas();
-    }, []);
+    }, [refreshIdeas]);
 
     const handleChange = (e) => {
         const value = e.target.value;

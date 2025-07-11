@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
+import api from "../lib/axios.js";
 
 import NavBar from "../Components/NavBar.jsx";
 import CreateIdea from "../Components/CreateIdea.jsx";
@@ -12,6 +12,7 @@ const CreatePage = () => {
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
+    const [refreshIdeas, setRefreshIdeas] = useState(false);
 
     const [del, setDelete] = useState(false);
     const [deleteIdeas, setDeleteIdeas] = useState([]);
@@ -41,7 +42,7 @@ const CreatePage = () => {
 
         setLoading(true);
         try {
-            await axios.post("http://localhost:5001/api/ideas", {
+            await api.post("/ideas", {
                 title,
                 by,
                 category,
@@ -52,6 +53,7 @@ const CreatePage = () => {
             setBy("");
             setCategory("");
             setDescription("");
+            setRefreshIdeas(!refreshIdeas);
         } catch (error) {
             console.error(error);
             toast.error("Error in logging idea");
@@ -83,7 +85,7 @@ const CreatePage = () => {
 
         setLoading(true);
         try {
-            await axios.put(`http://localhost:5001/api/ideas/${clickedId}`, {
+            await api.put(`/ideas/${clickedId}`, {
                 title,
                 by,
                 category,
@@ -109,7 +111,7 @@ const CreatePage = () => {
         setClicked(true);
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:5001/api/ideas/${id}`);
+            const response = await api.get(`/ideas/${id}`);
             setClickedId(id);
             setClickedTitle(response.data.idea.title);
             setClickedBy(response.data.idea.by);
@@ -126,7 +128,7 @@ const CreatePage = () => {
     const deleteIdea = async () => {
         try {
             await Promise.all(
-                deleteIdeas.map(id => axios.delete(`http://localhost:5001/api/ideas/${id}`))
+                deleteIdeas.map(id => api.delete(`/ideas/${id}`))
             );
             toast.success("Idea(s) deleted successfully");
         } catch (error) {
@@ -152,6 +154,7 @@ const CreatePage = () => {
                 del={del}
                 deleteIdea={deleteIdea}
                 deleteIdeas={deleteIdeas}
+                refreshIdeas={refreshIdeas}
             />
             <CreateIdea
                 title={title} setTitle={setTitle}

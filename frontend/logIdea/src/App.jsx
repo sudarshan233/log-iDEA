@@ -2,10 +2,8 @@ import {Route, Routes} from "react-router";
 import HomePage from "./Pages/HomePage.jsx";
 import ViewIdeasPage from "./Pages/ViewIdeasPage.jsx";
 import CreatePage from "./Pages/CreatePage.jsx";
-import toast from "react-hot-toast";
-import "./index.css"
 
-const buttonStyle = "text-green-600 p-4 bg-green-100";
+import "./index.css"
 
 const App = () => {
     return (

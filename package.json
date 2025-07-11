@@ -1,0 +1,22 @@
+{
+  "name": "idea",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend/logIdea && npm run build --prefix frontend/logIdea",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudarshan233/log-iDEA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sudarshan233/log-iDEA/issues"
+  },
+  "homepage": "https://github.com/sudarshan233/log-iDEA#readme",
+  "description": ""
+}
