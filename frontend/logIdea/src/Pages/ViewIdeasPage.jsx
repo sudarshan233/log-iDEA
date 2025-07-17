@@ -1,8 +1,23 @@
 import ViewIdeasBar from "../Components/ViewIdeasBar.jsx";
 import NavBar from "../Components/NavBar.jsx";
+import {useState} from "react";
+import CreateIdea from "../Components/CreateIdea.jsx";
+import {useNavigate} from "react-router";
 
-const ViewIdeasPage = () => {
-    const scrollStyle = "scrollbar-thin scrollbar-thumb-amber-600 scrollbar-track-gray-900";
+const ViewIdeasPage = (props) => {
+    const {
+        scrollStyle,
+        refreshIdeas,
+        setDelete, setDeleteIdeas, del, deleteIdea, deleteIdeas,
+    } = props;
+
+    const navigate = useNavigate();
+
+    const [toggleLog, setToggleLog] = useState(false);
+
+    const enableLog = () => {
+        navigate("/create");
+    }
     return (
         <section className="flex">
             <NavBar />
@@ -13,7 +28,14 @@ const ViewIdeasPage = () => {
                 scrollStyle={scrollStyle}
                 flexDirection = "flex-row"
                 wrap="flex-wrap"
-                bottomMargin="mb-10"/>
+                bottomMargin="mb-10"
+                setDelete={setDelete}
+                setDeleteIdeas={setDeleteIdeas}
+                del={del}
+                deleteIdea={deleteIdea}
+                deleteIdeas={deleteIdeas}
+                refreshIdeas={refreshIdeas}
+                enableLog={enableLog}/>
         </section>
     )
 }
