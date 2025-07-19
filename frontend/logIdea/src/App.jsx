@@ -135,6 +135,7 @@ const App = () => {
                 deleteIdeas.map(id => api.delete(`/ideas/${id}`))
             );
             toast.success("Idea(s) deleted successfully");
+
         } catch (error) {
             console.error(error);
             toast.error("Error in deleting idea");
@@ -149,7 +150,8 @@ const App = () => {
                      enableLog={enableLog}
                      logIdea={logIdea}
                      refreshIdeas={refreshIdeas}
-                     del={del} setDelete={setDelete} deleteIdea={deleteIdea} setDeleteIdeas={setDeleteIdeas}
+                     del={del} setDelete={setDelete} deleteIdea={deleteIdea}
+                     setDeleteIdeas={setDeleteIdeas} deleteIdeas={deleteIdeas}
                      viewIdea={viewIdea} functionClick={setClicked}
                      editIdea={editIdea}
                      title={title} setTitle={setTitle}

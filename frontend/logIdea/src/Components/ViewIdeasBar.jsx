@@ -87,7 +87,7 @@ const ViewIdeasBar = (props) => {
                 </div>
             </div>
             <div className={`flex ${flexDirection} h-screen gap-4 pr-4 ${scrollStyle} ${overflow} ${wrap} box-border mb-2`}>
-                {loading ? <h1>Loading...</h1> : (ideas.length === 0 ? <div className="flex p-4 h-4/5 justify-center items-center border-dashed border-gray-500"><h1>No ideas logged yet!!!</h1></div> : ideas.map((idea, index) => {
+                {loading ? <h1>Loading...</h1> : (ideas.length === 0 ? <div className="flex p-4 h-4/5 justify-center items-center border-dashed  w-full border-gray-500"><h1>No ideas logged yet!!!</h1></div> : ideas.map((idea, index) => {
                     return <Idea
                         key={idea._id}
                         id={idea._id}
