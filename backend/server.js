@@ -4,6 +4,7 @@ import path from 'path';
 import cors from 'cors';
 
 import ideas from './routes/IdeaRoutes.js'
+import authRoutes from './routes/auth.routes.js';
 import {connectDB} from "./config/database.js";
 
 connectDB();
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.use('/api/ideas', ideas);
+app.use('/api/auth', authRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     const frontendPath = path.join(__dirname, '../frontend/logIdea/dist');
