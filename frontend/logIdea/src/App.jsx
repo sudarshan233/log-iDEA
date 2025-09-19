@@ -9,8 +9,6 @@ import toast from "react-hot-toast";
 import api from "./lib/axios.js";
 
 const App = () => {
-    const navigate = useNavigate();
-
     const [title, setTitle] = useState("");
     const [by, setBy] = useState("");
     const [category, setCategory] = useState("");

@@ -26,7 +26,7 @@ const HomePage = () => {
                         <button className="bg-accent text-white text-2xl p-4 rounded-xl">Log Idea</button>
                     </Link>
                 </section>
-                <Footer style="mt-16"/>
+                <Footer style="mt-16mg s"/>
 
             </section>
             <img className="h-fiveHundredPixels ml-12" src='/assets/IdeaAnimation.gif' />
