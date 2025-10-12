@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npm install --prefix backend && npm install --prefix frontend/logIdea && npm run build --prefix frontend/logIdea",
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
     "start": "npm run start --prefix backend"
   },
   "repository": {
@@ -18,5 +18,8 @@
     "url": "https://github.com/sudarshan233/log-iDEA/issues"
   },
   "homepage": "https://github.com/sudarshan233/log-iDEA#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2"
+  }
 }

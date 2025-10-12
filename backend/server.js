@@ -2,15 +2,16 @@ import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
+import cookieParser from "cookie-parser";
 
 import ideas from './routes/IdeaRoutes.js'
 import authRoutes from './routes/auth.routes.js';
 import {connectDB} from "./config/database.js";
 
-connectDB();
 dotenv.config();
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
 
@@ -21,9 +22,8 @@ if (process.env.NODE_ENV !== 'production') {
         }
     ));
 }
-
-app.use('/api/ideas', ideas);
 app.use('/api/auth', authRoutes);
+app.use('/api/ideas', ideas);
 
 if (process.env.NODE_ENV === 'production') {
     const frontendPath = path.join(__dirname, '../frontend/logIdea/dist');
@@ -43,6 +43,7 @@ if (process.env.NODE_ENV === 'production') {
 // });
 
 app.listen(PORT, (error) => {
+    connectDB();
     if(error) throw error;
     console.log(`Server is running on port ${PORT}`);
 });
