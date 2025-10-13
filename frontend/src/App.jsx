@@ -6,7 +6,7 @@ import CreatePage from "./Pages/CreatePage.jsx";
 import "./index.css"
 import {useEffect, useState} from "react";
 import toast from "react-hot-toast";
-import api from "./lib/axios.js";
+import api from "../lib/axios.js";
 
 const App = () => {
     const [title, setTitle] = useState("");

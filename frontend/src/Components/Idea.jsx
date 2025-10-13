@@ -1,4 +1,4 @@
-import {formatDate} from "../lib/utils.js";
+import {formatDate} from "../../lib/utils.js";
 import {useState} from "react";
 
 const Idea = (props) => {

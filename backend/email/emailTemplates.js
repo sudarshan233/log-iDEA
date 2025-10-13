@@ -106,7 +106,7 @@ export const WELCOME_EMAIL_TEMPLATE = `
   </div>
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <p>Hello,</p>
-    <p>Welcome to the one-stop app that provides users a seamless Feedback Form System!!!</p>
+    <p>Welcome to the one-stop app that provides users a seamless system to manage their ideas and turn them into innovations</p>
     <div style="text-align: center; margin: 30px 0;">
       <div style="background-color: #4CAF50; color: white; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; display: inline-block; font-size: 30px;">
         ✓

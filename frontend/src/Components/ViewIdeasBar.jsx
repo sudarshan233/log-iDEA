@@ -1,6 +1,6 @@
 import {Plus, Search, Trash2} from 'lucide-react';
 import {useEffect, useState} from "react";
-import api from "../lib/axios.js";
+import api from "../../lib/axios.js";
 
 import Idea from "./Idea.jsx";
 
